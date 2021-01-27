@@ -28,6 +28,7 @@ function Inbox() {
       <table>
         <thead>
           <tr>
+            <th>Fav</th>
             <th>email</th>
             <th>label</th>
             <th>title</th>
@@ -39,10 +40,29 @@ function Inbox() {
             .map((row) => {
               return (
                 <tr>
+                  <td
+                    style={{
+                      height: '40px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <button
+                      style={{ padding: '2px 5px' }}
+                      onClick={() => {
+                        mail[row.id - 1].star = !mail.find((item) => item.id === row.id).star;
+                        setMail([...mail]);
+                      }}
+                    >
+                      {row.star === true ? 'Y' : 'N'}
+                    </button>
+                  </td>
                   <td style={{ textAlign: 'start' }}>
                     <Link to={`mail/${row.id}`}>{row.email} </Link>
                   </td>
-                  <td>{row.tag.map((label)=>`#${label} `)}</td>
+                  <td>{row.tag.map((label) => `#${label} `)}</td>
                   <td>
                     <Link
                       to={`mail/${row.id}`}

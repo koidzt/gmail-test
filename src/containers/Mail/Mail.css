@@ -1,0 +1,40 @@
+.mail {
+  text-align: start;
+}
+
+.navBar-ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 16px;
+}
+
+.navBar-li {
+  padding-right: 10px;
+}
+
+.tag {
+  font-size: 18px;
+}
+
+.label {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  width: 400px;
+  padding: 10px 0px;
+}
+
+.list-tag {
+  padding: 10px 25px;
+}
+
+.tag-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.tag-form-input {
+  width: 320px;
+}
