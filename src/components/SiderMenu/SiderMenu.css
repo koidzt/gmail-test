@@ -1,0 +1,12 @@
+.siderMenu {
+  background-color: gray;
+  height: 100vh;
+  display: flex;
+  flex-basis: 10vw;
+  flex-direction: column;
+  padding: 10px;
+}
+
+ul {
+  list-style: none;
+}

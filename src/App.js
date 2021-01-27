@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import NavBar from './components/NavBar/NavBar';
+import SiderMenu from './components/SiderMenu/SiderMenu';
+import Inbox from './containers/Inbox/Inbox';
+import Mail from './containers/Mail/Mail';
+import Trash from './containers/Trash/Trash';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Switch>
+          <div className="container-sider">
+            <SiderMenu />
+            <div className="container-nav">
+              <NavBar />
+              <div className="content">
+                <Route exact path={'/inbox'} component={Inbox} />
+                <Route exact path="/trash" component={Trash} />
+                <Route exact path="/mail/:id" component={Mail} />
+                <Route exact path={'/'} component={Inbox} />
+              </div>
+            </div>
+          </div>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

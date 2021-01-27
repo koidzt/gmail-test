@@ -1,0 +1,9 @@
+.navBar {
+  background-color: skyblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  height: 8vh;
+}

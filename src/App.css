@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-sider {
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  background-color: lemonchiffon;
+  height: 90vh;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid #ffffff;
+  font-size: 30px;
+}
