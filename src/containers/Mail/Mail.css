@@ -21,20 +21,25 @@
   position: absolute;
   z-index: 1;
   background-color: white;
-  width: 400px;
+  width: 200px;
   padding: 10px 0px;
 }
 
-.list-tag {
-  padding: 10px 25px;
+.input-tag {
+  padding: 10px 20px;
 }
 
 .tag-form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 }
 
 .tag-form-input {
-  width: 320px;
+  width: 120px;
+}
+
+.add-label-form {
+  width: 200px;
+  text-align: center;
 }

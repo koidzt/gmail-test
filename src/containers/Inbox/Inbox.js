@@ -17,7 +17,7 @@ function Inbox() {
       })
       .then((jsonResponse) => {
         // console.log(jsonResponse);
-        setMail(jsonResponse.mail);
+        setMail(jsonResponse);
       });
   }, []);
 
@@ -29,7 +29,7 @@ function Inbox() {
         <thead>
           <tr>
             <th>Fav</th>
-            <th>email</th>
+            <th>by</th>
             <th>label</th>
             <th>title</th>
           </tr>
@@ -60,7 +60,7 @@ function Inbox() {
                     </button>
                   </td>
                   <td style={{ textAlign: 'start' }}>
-                    <Link to={`mail/${row.id}`}>{row.email} </Link>
+                    <Link to={`mail/${row.id}`}>{row.by} </Link>
                   </td>
                   <td>{row.tag.map((label) => `#${label} `)}</td>
                   <td>

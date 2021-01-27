@@ -17,7 +17,7 @@ function Trash() {
       })
       .then((jsonResponse) => {
         // console.log(jsonResponse);
-        setMail(jsonResponse.mail);
+        setMail(jsonResponse);
       });
   }, []);
 
@@ -29,7 +29,7 @@ function Trash() {
         <thead>
           <tr>
             {/* <th>select</th> */}
-            <th>email</th>
+            <th>by</th>
             <th>label</th>
             <th>title</th>
           </tr>
@@ -44,9 +44,9 @@ function Trash() {
                     <input type="checkbox" id={row.id} style={{ height: '20px', width: '20px' }}></input>
                   </td> */}
                   <td style={{ textAlign: 'start' }}>
-                    <Link to={`mail/${row.id}`}>{row.email} </Link>
+                    <Link to={`mail/${row.id}`}>{row.by} </Link>
                   </td>
-                  <td style={{ paddingLeft: '0.5em' }}>{row.tag.map((label)=>`#${label} `)}</td>
+                  <td style={{ paddingLeft: '0.5em' }}>{row.tag.map((label) => `#${label} `)}</td>
                   <td>
                     <Link
                       to={`mail/${row.id}`}

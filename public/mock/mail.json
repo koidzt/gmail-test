@@ -1,58 +1,56 @@
-{
-  "mail": [
-    {
-      "id": 1,
-      "email": "first@gmail.com",
-      "title": "Subject1",
-      "message": "New Message1",
-      "folder": "inbox",
-      "tag": ["Note", "Work", "Travel"],
-      "star": true
-    },
-    {
-      "id": 2,
-      "email": "second@gmail.com",
-      "title": "Subject2",
-      "message": "New Message2",
-      "folder": "inbox",
-      "tag": [],
-      "star": false
-    },
-    {
-      "id": 3,
-      "email": "second@gmail.com",
-      "title": "Subject3",
-      "message": "New Message3",
-      "folder": "trash",
-      "tag": ["Note", "Travel"],
-      "star": false
-    },
-    {
-      "id": 4,
-      "email": "first@gmail.com",
-      "title": "Subject4",
-      "message": "New Message4",
-      "folder": "trash",
-      "tag": ["Work", "Travel"],
-      "star": false
-    },
-    {
-      "id": 5,
-      "email": "first@gmail.com",
-      "title": "Subject5",
-      "message": "New Message5",
-      "folder": "inbox",
-      "tag": ["Note"],
-      "star": true
-    },
-    {
-      "id": 6,
-      "email": "second@gmail.com",
-      "title": "Subject6",
-      "message": "New Message6",
-      "folder": "inbox",
-      "tag": ["Work"],
-      "star": false
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "by": "first@gmail.com",
+    "title": "Subject1",
+    "message": "New Message1",
+    "folder": "inbox",
+    "tag": ["Note", "Work", "Travel"],
+    "star": true
+  },
+  {
+    "id": 2,
+    "by": "second@gmail.com",
+    "title": "Subject2",
+    "message": "New Message2",
+    "folder": "inbox",
+    "tag": [],
+    "star": false
+  },
+  {
+    "id": 3,
+    "by": "second@gmail.com",
+    "title": "Subject3",
+    "message": "New Message3",
+    "folder": "trash",
+    "tag": ["Note", "Travel"],
+    "star": false
+  },
+  {
+    "id": 4,
+    "by": "first@gmail.com",
+    "title": "Subject4",
+    "message": "New Message4",
+    "folder": "trash",
+    "tag": ["Work", "Travel"],
+    "star": false
+  },
+  {
+    "id": 5,
+    "by": "first@gmail.com",
+    "title": "Subject5",
+    "message": "New Message5",
+    "folder": "inbox",
+    "tag": ["Note"],
+    "star": true
+  },
+  {
+    "id": 6,
+    "by": "second@gmail.com",
+    "title": "Subject6",
+    "message": "New Message6",
+    "folder": "inbox",
+    "tag": ["Work"],
+    "star": false
+  }
+]
