@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Inbox() {
+function Starred() {
   const [mail, setMail] = useState([]);
 
   useEffect(() => {
@@ -24,11 +24,10 @@ function Inbox() {
   // console.log(mail);
 
   return (
-    <div className="inbox">
+    <div className="mail-box">
       <table>
         <thead>
           <tr>
-            <th>Fav</th>
             <th>by</th>
             <th>label</th>
             <th>title</th>
@@ -36,29 +35,10 @@ function Inbox() {
         </thead>
         <tbody>
           {mail
-            .filter((mail) => mail.folder === 'inbox')
+            .filter((mail) => mail.star === true)
             .map((row) => {
               return (
                 <tr>
-                  <td
-                    style={{
-                      height: '40px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <button
-                      style={{ padding: '2px 5px' }}
-                      onClick={() => {
-                        mail[row.id - 1].star = !mail.find((item) => item.id === row.id).star;
-                        setMail([...mail]);
-                      }}
-                    >
-                      {row.star === true ? 'Y' : 'N'}
-                    </button>
-                  </td>
                   <td style={{ textAlign: 'start' }}>
                     <Link to={`mail/${row.id}`}>{row.by} </Link>
                   </td>
@@ -86,4 +66,4 @@ function Inbox() {
   );
 }
 
-export default Inbox;
+export default Starred;

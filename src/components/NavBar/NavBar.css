@@ -1,9 +1,15 @@
 .navBar {
   background-color: skyblue;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100vw;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 90vw;
   height: 8vh;
+  font-size: 20px;
+}
+
+.navBar-ul {
+  list-style: none;
+  padding-left: 16px;
 }

@@ -13,6 +13,11 @@ function SiderMenu() {
           </Link>
         </li>
         <li>
+          <Link to="/starred">
+            <p>Starred</p>
+          </Link>
+        </li>
+        <li>
           <Link to="/trash">
             <p>Trash</p>
           </Link>

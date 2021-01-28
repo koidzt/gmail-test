@@ -2,9 +2,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import SiderMenu from './components/SiderMenu/SiderMenu';
-import Inbox from './containers/Inbox/Inbox';
+import Compose from './containers/Compose/Compose';
 import Mail from './containers/Mail/Mail';
-import Trash from './containers/Trash/Trash';
+import MailBox from './containers/MailBox/MailBox';
+import Starred from './containers/Starred/Starred';
 
 function App() {
   return (
@@ -16,10 +17,15 @@ function App() {
             <div className="container-nav">
               <NavBar />
               <div className="content">
-                <Route exact path={'/inbox'} component={Inbox} />
-                <Route exact path="/trash" component={Trash} />
+                <Route exact path={'/inbox'}>
+                  <MailBox path="inbox" />
+                </Route>
+                <Route exact path="/trash">
+                  <MailBox path="trash" />
+                </Route>
+                <Route exact path="/starred" component={Starred} />
+                <Route exact path="/compose" component={Compose} />
                 <Route exact path="/mail/:id" component={Mail} />
-                <Route exact path={'/'} component={Inbox} />
               </div>
             </div>
           </div>

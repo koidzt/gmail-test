@@ -21,9 +21,9 @@ function Mail(props) {
         return res.json();
       })
       .then((jsonResponse) => {
-        const fatchMail = jsonResponse.find((mail) => mail.id === Number(params.id));
-        setMail(fatchMail);
-        setInputCheckbox(fatchMail.tag);
+        const fetchMail = jsonResponse.find((mail) => mail.id === Number(params.id));
+        setMail(fetchMail);
+        setInputCheckbox(fetchMail.tag);
       });
 
     fetch('../mock/label.json', {
@@ -62,6 +62,7 @@ function Mail(props) {
     // console.log(event);
     const value = event.target.value;
     setInputText(value);
+    console.log(value);
   };
 
   const createLabel = (event) => {
@@ -69,6 +70,7 @@ function Mail(props) {
     // console.log(event);
     const newLabel = [...label, inputText];
     setLabel(newLabel);
+    setInputText('');
   };
 
   const handleChangeCheckbox = (event) => {
@@ -85,19 +87,20 @@ function Mail(props) {
   const apply = (event) => {
     event.preventDefault();
     // console.log(event);
-    setMail({
-      id: mail.id,
-      by: mail.by,
-      title: mail.title,
-      message: mail.message,
-      folder: mail.folder,
-      tag: inputCheckbox,
-      star: mail.star,
-    });
+    setMail({ ...mail, tag: inputCheckbox });
+    // setMail({
+    //   id: mail.id,
+    //   by: mail.by,
+    //   title: mail.title,
+    //   message: mail.message,
+    //   folder: mail.folder,
+    //   tag: inputCheckbox,
+    //   star: mail.star,
+    // });
     setIsShow(!isShow);
   };
 
-  // console.log(inputCheckbox, mail);
+  console.log(inputCheckbox, mail);
 
   return (
     <div className="mail">
@@ -108,8 +111,7 @@ function Mail(props) {
           <button
             style={{ margin: '0 5px', padding: '2px 5px' }}
             onClick={() => {
-              mail.star = !mail.star;
-              setMail({ ...mail });
+              setMail({ ...mail, star: !mail.star });
             }}
           >
             {mail.star === true ? 'Y' : 'N'}
@@ -122,7 +124,7 @@ function Mail(props) {
               <div className="label">
                 <form className="tag-form">
                   <span className="add-label-form">
-                    <input className="tag-form-input" onChange={onHandleChange} />
+                    <input className="tag-form-input" value={inputText} onChange={onHandleChange} />
                     <button type="submit" onClick={createLabel}>
                       Create New
                     </button>
@@ -152,7 +154,7 @@ function Mail(props) {
               setIsShow(!isShow);
             }}
           >
-            >
+            {'>'}
           </button>
         </li>
       </ul>

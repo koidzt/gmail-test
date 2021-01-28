@@ -1,0 +1,49 @@
+.compose {
+  width: 90vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.compose-box {
+  border-bottom: 1px solid grey;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.compose-label {
+  width: 10%;
+  font-size: 24px;
+  text-align: end;
+}
+
+.compost-input {
+  width: 90%;
+  font-size: 20px;
+  margin-left: 12px;
+}
+
+.compost-textarea {
+  resize: none;
+  width: 90%;
+  font-size: 20px;
+  margin-left: 12px;
+}
+
+.compose-box-button {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.compose-button {
+  background-color: aquamarine;
+  width: 20%;
+  font-size: 30px;
+  margin-left: 12px;
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Trash() {
+function MailBox({ path }) {
   const [mail, setMail] = useState([]);
 
   useEffect(() => {
@@ -24,11 +24,11 @@ function Trash() {
   // console.log(mail);
 
   return (
-    <div className="trash">
+    <div className="mail-box">
       <table>
         <thead>
           <tr>
-            {/* <th>select</th> */}
+            <th>Fav</th>
             <th>by</th>
             <th>label</th>
             <th>title</th>
@@ -36,17 +36,33 @@ function Trash() {
         </thead>
         <tbody>
           {mail
-            .filter((mail) => mail.folder === 'trash')
+            .filter((mail) => mail.folder === path)
             .map((row) => {
               return (
                 <tr>
-                  {/* <td>
-                    <input type="checkbox" id={row.id} style={{ height: '20px', width: '20px' }}></input>
-                  </td> */}
+                  <td
+                    style={{
+                      height: '40px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <button
+                      style={{ padding: '2px 5px' }}
+                      onClick={() => {
+                        mail[row.id - 1].star = !mail.find((item) => item.id === row.id).star;
+                        setMail([...mail]);
+                      }}
+                    >
+                      {row.star === true ? 'Y' : 'N'}
+                    </button>
+                  </td>
                   <td style={{ textAlign: 'start' }}>
                     <Link to={`mail/${row.id}`}>{row.by} </Link>
                   </td>
-                  <td style={{ paddingLeft: '0.5em' }}>{row.tag.map((label) => `#${label} `)}</td>
+                  <td>{row.tag.map((label) => `#${label} `)}</td>
                   <td>
                     <Link
                       to={`mail/${row.id}`}
@@ -70,4 +86,4 @@ function Trash() {
   );
 }
 
-export default Trash;
+export default MailBox;
