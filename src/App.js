@@ -6,6 +6,7 @@ import Compose from './containers/Compose/Compose';
 import Mail from './containers/Mail/Mail';
 import MailBox from './containers/MailBox/MailBox';
 import Starred from './containers/Starred/Starred';
+import Tag from './containers/Tag/Tag';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
                 <Route exact path="/trash">
                   <MailBox path="trash" />
                 </Route>
+                <Route exact path="/tag/:tag" component={Tag} />
+
                 <Route exact path="/starred" component={Starred} />
                 <Route exact path="/compose" component={Compose} />
                 <Route exact path="/mail/:id" component={Mail} />

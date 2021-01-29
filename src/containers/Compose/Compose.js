@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './Compose.css';
 
 function Compose() {
+  const history = useHistory();
   const [inputForm, setInputForm] = useState({
     to: '',
     subject: '',
@@ -32,38 +34,39 @@ function Compose() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert('An essay was submitted: ' + JSON.stringify(inputForm));
+    if (inputForm.to === '') {
+      return alert('please enter email to received');
+    }
+
+    alert(
+      'An essay was submitted: \nTo: ' +
+        inputForm.to +
+        '\nSubject: ' +
+        inputForm.subject +
+        '\nMessage: ' +
+        inputForm.message
+    );
     setInputForm({
       to: '',
       subject: '',
       message: '',
     });
+    history.push('/inbox');
   };
 
   return (
     <form className="compose" onSubmit={handleSubmit}>
       <div className="compose-box">
         <span className="compose-label">To </span>
-        <input className="compost-input" value={inputForm.to} onChange={handleChangeTo} placeholder={mockInput.to} />
+        <input className="compost-input" value={inputForm.to} onChange={handleChangeTo} />
       </div>
       <div className="compose-box">
         <span className="compose-label">Subject </span>
-        <input
-          className="compost-input"
-          value={inputForm.subject}
-          onChange={handleChangeSubject}
-          placeholder={mockInput.subject}
-        />
+        <input className="compost-input" value={inputForm.subject} onChange={handleChangeSubject} />
       </div>
       <div className="compose-box">
         <span className="compose-label">Message </span>
-        <textarea
-          className="compost-textarea"
-          rows="25"
-          value={inputForm.message}
-          onChange={handleChangeMessage}
-          placeholder={mockInput.message}
-        />
+        <textarea className="compost-textarea" rows="25" value={inputForm.message} onChange={handleChangeMessage} />
       </div>
       <div className="compose-box-button">
         <button className="compose-button" type="submit">

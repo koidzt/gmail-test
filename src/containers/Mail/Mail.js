@@ -6,12 +6,15 @@ function Mail(props) {
   const params = useParams();
   const [mail, setMail] = useState({});
   const [label, setLabel] = useState([]);
-  const [isShow, setIsShow] = useState(false);
+  const [folder, setFolder] = useState([]);
+  const [isShowLabel, setIsShowLabel] = useState(false);
+  const [isShowMove, setIsShowMove] = useState(false);
   const [inputText, setInputText] = useState('');
   const [inputCheckbox, setInputCheckbox] = useState([]);
+  const [inputRadio, setInputRadio] = useState({});
 
   useEffect(() => {
-    fetch('../mock/mail.json', {
+    fetch('/mock/mail.json', {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -26,7 +29,7 @@ function Mail(props) {
         setInputCheckbox(fetchMail.tag);
       });
 
-    fetch('../mock/label.json', {
+    fetch('/mock/label.json', {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -39,24 +42,21 @@ function Mail(props) {
         setLabel(jsonResponse);
       });
 
+    fetch('/mock/folder.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((jsonResponse) => {
+        setFolder(jsonResponse);
+      });
+
     // console.log('mail :', mail, 'label:', label);
   }, []);
-
-  // const handleChange = (event) => {
-  //   const value = event.target.value;
-  //   console.log(mail.tag);
-  //   console.log(value.split(','));
-  //   const newTag = value.split(',');
-  //   setMail({
-  //     id: mail.id,
-  //     by: mail.by,
-  //     title: mail.title,
-  //     message: mail.message,
-  //     folder: mail.folder,
-  //     tag: newTag,
-  //     star: mail.star,
-  //   });
-  // };
 
   const onHandleChange = (event) => {
     // console.log(event);
@@ -84,7 +84,13 @@ function Mail(props) {
     }
   };
 
-  const apply = (event) => {
+  const handleChangeRadio = (event) => {
+    const value = event.target.value;
+    console.log(event);
+    setInputRadio(value);
+  };
+
+  const applyLabel = (event) => {
     event.preventDefault();
     // console.log(event);
     setMail({ ...mail, tag: inputCheckbox });
@@ -97,10 +103,18 @@ function Mail(props) {
     //   tag: inputCheckbox,
     //   star: mail.star,
     // });
-    setIsShow(!isShow);
+    setIsShowLabel(!isShowLabel);
   };
 
-  console.log(inputCheckbox, mail);
+  const applyMove = (event) => {
+    event.preventDefault();
+    // console.log(event);
+    setMail({ ...mail, folder: inputRadio });
+
+    setIsShowMove(!isShowMove);
+  };
+
+  // console.log(inputCheckbox, mail);
 
   return (
     <div className="mail">
@@ -120,7 +134,7 @@ function Mail(props) {
         <li className="navBar-li">
           <span>
             Label
-            {isShow && (
+            {isShowLabel && (
               <div className="label">
                 <form className="tag-form">
                   <span className="add-label-form">
@@ -131,19 +145,18 @@ function Mail(props) {
                   </span>
                 </form>
                 <form className="tag-form">
-                  {typeof label === 'object' &&
-                    label.map((item) => (
-                      <div className="input-tag">
-                        <input
-                          type="checkbox"
-                          name={item}
-                          onChange={handleChangeCheckbox}
-                          defaultChecked={mail.tag.find((e) => e === item)}
-                        />
-                        <label>{item}</label>
-                      </div>
-                    ))}
-                  <button onClick={apply}>Apply</button>
+                  {label.map((item) => (
+                    <div className="input-tag">
+                      <input
+                        type="checkbox"
+                        name={item}
+                        onChange={handleChangeCheckbox}
+                        defaultChecked={mail.tag.find((e) => e === item)}
+                      />
+                      <label>{item}</label>
+                    </div>
+                  ))}
+                  <button onClick={applyLabel}>Apply</button>
                 </form>
               </div>
             )}
@@ -151,7 +164,39 @@ function Mail(props) {
           <button
             style={{ padding: '1px 5px', marginLeft: '3px' }}
             onClick={() => {
-              setIsShow(!isShow);
+              setIsShowLabel(!isShowLabel);
+            }}
+          >
+            {'>'}
+          </button>
+        </li>
+        <li className="navBar-li">
+          <span>
+            Move
+            {isShowMove && (
+              <div className="label">
+                <form className="tag-form">
+                  {folder.map((item) => (
+                    <div className="input-tag">
+                      <input
+                        type="radio"
+                        name="folder"
+                        value={item}
+                        onChange={handleChangeRadio}
+                        defaultChecked={mail.folder === item}
+                      />
+                      <label>{item}</label>
+                    </div>
+                  ))}
+                  <button onClick={applyMove}>Apply</button>
+                </form>
+              </div>
+            )}
+          </span>
+          <button
+            style={{ padding: '1px 5px', marginLeft: '3px' }}
+            onClick={() => {
+              setIsShowMove(!isShowMove);
             }}
           >
             {'>'}
