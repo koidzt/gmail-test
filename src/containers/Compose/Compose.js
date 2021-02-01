@@ -51,7 +51,7 @@ function Compose() {
       subject: '',
       message: '',
     });
-    history.push('/inbox');
+    history.push('/');
   };
 
   return (

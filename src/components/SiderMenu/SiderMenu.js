@@ -30,6 +30,11 @@ function SiderMenu() {
       <ul>
         <div style={{ borderTop: '1px solid lightgrey', padding: '16px 0' }}>
           <li>
+            <Link to="/">
+              <p>All Mail</p>
+            </Link>
+          </li>
+          <li>
             <Link to="/starred">
               <p>Starred</p>
             </Link>

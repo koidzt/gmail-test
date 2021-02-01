@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import SiderMenu from './components/SiderMenu/SiderMenu';
+import AllMail from './containers/AllMail/AllMail';
 import Compose from './containers/Compose/Compose';
 import Mail from './containers/Mail/Mail';
 import MailBox from './containers/MailBox/MailBox';
@@ -25,10 +26,10 @@ function App() {
                   <MailBox path="trash" />
                 </Route>
                 <Route exact path="/tag/:tag" component={Tag} />
-
                 <Route exact path="/starred" component={Starred} />
                 <Route exact path="/compose" component={Compose} />
                 <Route exact path="/mail/:id" component={Mail} />
+                <Route exact path="/" component={AllMail} />
               </div>
             </div>
           </div>
