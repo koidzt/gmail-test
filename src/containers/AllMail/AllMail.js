@@ -5,20 +5,18 @@ function AllMail() {
   const [mail, setMail] = useState([]);
 
   useEffect(() => {
-    fetch('mock/mail.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then((res) => {
-        // console.log(res);
-        return res.json();
-      })
-      .then((jsonResponse) => {
-        // console.log(jsonResponse);
-        setMail(jsonResponse);
+    const fetchData = async () => {
+      const fetchMail = await fetch('mock/mail.json', {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
       });
+      const resMail = await fetchMail.json();
+      setMail(resMail);
+    };
+
+    fetchData();
   }, []);
 
   // console.log(mail);
