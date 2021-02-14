@@ -35,7 +35,7 @@ function AllMail() {
         <tbody>
           {mail.map((row) => {
             return (
-              <tr>
+              <tr key={`mail-${mail.id}`}>
                 <td
                   style={{
                     height: '40px',

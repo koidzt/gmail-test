@@ -5,24 +5,20 @@ import './SiderMenu.css';
 function SiderMenu() {
   const [label, setLabel] = useState([]);
 
-  useEffect(() => {
-    fetch('/mock/label.json', {
+  useEffect(async () => {
+    const fetchLabel = await fetch('/mock/label.json', {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((jsonResponse) => {
-        setLabel(jsonResponse);
-      });
+    });
+
+    const resLabel = await fetchLabel.json();
+
+    setLabel(resLabel);
 
     // console.log('mail :', mail, 'label:', label);
   }, []);
-
-  console.log(label);
 
   return (
     <div className="siderMenu">
@@ -56,7 +52,7 @@ function SiderMenu() {
         <div style={{ borderTop: '1px solid lightgrey', padding: '16px 0' }}>
           <span>Tag</span>
           {label.map((item) => (
-            <li>
+            <li key={`label-${item}`}>
               <Link to={`/tag/${item}`}>
                 <p>{item}</p>
               </Link>

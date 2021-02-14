@@ -14,46 +14,42 @@ function Mail(props) {
   const [inputRadio, setInputRadio] = useState({});
 
   useEffect(() => {
-    fetch('/mock/mail.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((jsonResponse) => {
-        const fetchMail = jsonResponse.find((mail) => mail.id === Number(params.id));
-        setMail(fetchMail);
-        setInputCheckbox(fetchMail.tag);
+    const fetchData = async () => {
+      //fetch mail
+      const fetchMail = await fetch('/mock/mail.json', {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
       });
+      const resMail = await fetchMail.json();
+      const findMail = resMail.find((mail) => mail.id === Number(params.id));
 
-    fetch('/mock/label.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((jsonResponse) => {
-        setLabel(jsonResponse);
+      // fetch label
+      const fetchLabel = await fetch('/mock/label.json', {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
       });
+      const resLabel = await fetchLabel.json();
 
-    fetch('/mock/folder.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((jsonResponse) => {
-        setFolder(jsonResponse);
+      // fetch folder
+      const fetchFolder = await fetch('/mock/folder.json', {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
       });
+      const resFolder = await fetchFolder.json();
+
+      setMail(findMail);
+      setInputCheckbox(findMail.tag);
+      setLabel(resLabel);
+      setFolder(resFolder);
+    };
+
+    fetchData();
 
     // console.log('mail :', mail, 'label:', label);
   }, []);
@@ -146,7 +142,7 @@ function Mail(props) {
                 </form>
                 <form className="tag-form">
                   {label.map((item) => (
-                    <div className="input-tag">
+                    <div key={`tag-${item}`} className="input-tag">
                       <input
                         type="checkbox"
                         name={item}
@@ -177,7 +173,7 @@ function Mail(props) {
               <div className="label">
                 <form className="tag-form">
                   {folder.map((item) => (
-                    <div className="input-tag">
+                    <div key={`folder-${item}`} className="input-tag">
                       <input
                         type="radio"
                         name="folder"
